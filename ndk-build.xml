@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ndkbuild_rules" default="">
+
+<!-- target<description>可通过ant -p命令查看 -->  
+<target name="ndkbuild"  
+    description="Compile c/c++ code to so file.">  
+    <exec executable="/home/lym/work/android-ndk-r10c/ndk-build" failonerror="true"/>  
+    <echo message="out.final.file----${out.final.file}"></echo>  
+</target>  
+
+</project>

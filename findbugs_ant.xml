@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="findbugs_rules" default="">
+
+<property name="findbugs.home" value="/home/lym/work/findbugs-2.0.3" />
+<path id="findbugs_lib">
+	<fileset dir="${findbugs.home}/lib/">
+		<include name="*.jar"/>
+	</fileset>
+</path>
+<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask" classpathref="findbugs_lib" />
+<target name="findbugs" depends="-compile">
+	<mkdir dir="reports" />
+	<findbugs home="${findbugs.home}" output="xml" outputFile="findbugs.xml">
+		<auxClasspath path="${android.jar}" />
+		<auxClasspath>
+			<fileset dir="${other-dependency-lib-dir}/libs" includes="*.jar" />
+		</auxClasspath>
+		<class location="${out.dir}" />
+		<sourcePath path="${source.dir}" />
+	</findbugs>
+</target>
+
+<!-- target<description>可通过ant -p命令查看 -->  
+<target name="ndk_build"  
+    description="Compile c/c++ code to so file.">  
+    <exec executable="/home/lym/work/android-ndk-r10c/ndk-build" failonerror="true"/>  
+      <arg value="-B"/>
+    <echo message="out.final.file----${out.final.file}"></echo>  
+</target>  
+
+</project>
